@@ -19,6 +19,15 @@ const Footer = () => {
 };
 
 
+class Buttons extends React.Component
+{
+    render()
+    {
+        return (e('div', null,
+                  [e('button', {id: 'equals', value: '=', style: {background: '#ac399'}}, '=')]));
+    }
+}
+
 class App extends React.Component
 {
     constructor (props)
@@ -33,7 +42,7 @@ class App extends React.Component
     render()
     {
         return [e(Header), 
-                e('h2',null, 'My APP'),
+                e(Buttons),
                 e(Footer)];
     }
 }
