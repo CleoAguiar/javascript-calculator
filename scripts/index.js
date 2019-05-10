@@ -35,7 +35,10 @@ class Buttons extends React.Component
                    e('button', {id: 'seven', value: '7', onClick:'need improve'}, '7'),
                    e('button', {id: 'eight', value: '8', onClick:'need improve'}, '8'),
                    e('button', {id: 'nine', value: '9', onClick:'need improve'}, '9'),
-
+                   e('button', {id:'add', value:'+', onClick: 'need to improve', style: {background: '#666'}}, '+'),
+                   e('button', {id:'subtract', value:'-', onClick: 'need to improve', style: {background: '#666'}}, '-'),
+                   e('button', {id:'multiply', value:'*', onClick: 'need to improve', style: {background: '#666'}}, '*'),
+                   e('button', {id:'divide', value:'/', onClick: 'need to improve', style: {background: '#666'}}, '/'),
                   ]));
     }
 }
