@@ -18,13 +18,15 @@ const Footer = () => {
         );
 };
 
+const operatorStyle = {background: '#F80'};
+
 
 class Buttons extends React.Component
 {
     render()
     {
         return (e('div', null,
-                  [e('button', {id: 'equals', value: '=', style: {background: '#ac399'}}, '='),
+                  [e('button', {id: 'equals', value: '=', style: operatorStyle }, '='),
                    e('button', {id: 'zero', value: '0', onClick:'need improve'}, '0'),
                    e('button', {id: 'one', value: '1', onClick:'need improve'}, '1'),
                    e('button', {id: 'two', value: '2', onClick:'need improve'}, '2'),
@@ -35,10 +37,10 @@ class Buttons extends React.Component
                    e('button', {id: 'seven', value: '7', onClick:'need improve'}, '7'),
                    e('button', {id: 'eight', value: '8', onClick:'need improve'}, '8'),
                    e('button', {id: 'nine', value: '9', onClick:'need improve'}, '9'),
-                   e('button', {id:'add', value:'+', onClick: 'need to improve', style: {background: '#666'}}, '+'),
-                   e('button', {id:'subtract', value:'-', onClick: 'need to improve', style: {background: '#666'}}, '-'),
-                   e('button', {id:'multiply', value:'*', onClick: 'need to improve', style: {background: '#666'}}, '*'),
-                   e('button', {id:'divide', value:'/', onClick: 'need to improve', style: {background: '#666'}}, '/'),
+                   e('button', {id:'add', value:'+', onClick: 'need to improve', style: operatorStyle }, '+'),
+                   e('button', {id:'subtract', value:'-', onClick: 'need to improve', style: operatorStyle }, '-'),
+                   e('button', {id:'multiply', value:'*', onClick: 'need to improve', style: operatorStyle }, '*'),
+                   e('button', {id:'divide', value:'/', onClick: 'need to improve', style: operatorStyle }, '/'),
                    e('button', {id:'ac', value:'AC', onClick: 'need to improve', style: {background: '#667'}}, 'AC'),
                    e('button', {id:'signal', value:'+/-', onClick: 'need to improve', style: {background: '#667'}}, '+/-'),
                    e('button', {id:'percent', value:'%', onClick: 'need to improve', style: {background: '#667'}}, '%'),
