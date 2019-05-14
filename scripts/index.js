@@ -44,7 +44,7 @@ class Buttons extends React.Component
                    e('button', {id:'ac', value:'AC', onClick: 'need to improve', style: operatorStyle }, 'AC'),
                    e('button', {id:'signal', value:'+/-', onClick: 'need to improve', style: operatorStyle }, '+/-'),
                    e('button', {id:'percent', value:'%', onClick: 'need to improve', style: operatorStyle }, '%'),
-                   e('button', {id:'comma', value:',', onClick: 'need to improve' }, ','),
+                   e('button', {id:'decimal', value:'.', onClick: 'need to improve' }, '.'),
 
                   ]));
     }
