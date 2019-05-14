@@ -50,6 +50,15 @@ class Buttons extends React.Component
     }
 }
 
+
+class Output extends React.Component
+{
+  render()
+  {
+    return e('div', {id: 'display', className: 'outputScreen' }, '000');
+  }
+}
+
 class App extends React.Component
 {
     constructor (props)
@@ -64,6 +73,7 @@ class App extends React.Component
     render()
     {
         return [e(Header), 
+                e(Output),
                 e(Buttons),
                 e(Footer)];
     }
