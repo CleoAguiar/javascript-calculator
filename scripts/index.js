@@ -41,7 +41,7 @@ class Buttons extends React.Component
                    e('button', {id:'subtract', value:'-', onClick: 'need to improve', style: operatorBasicStyle }, '-'),
                    e('button', {id:'multiply', value:'*', onClick: 'need to improve', style: operatorBasicStyle }, '*'),
                    e('button', {id:'divide', value:'/', onClick: 'need to improve', style: operatorBasicStyle }, '/'),
-                   e('button', {id:'clear', value:'AC', onClick: 'need to improve', style: operatorStyle }, 'AC'),
+                   e('button', {id:'clear', value:'AC', onClick: this.props.initialize , style: operatorStyle }, 'AC'),
                    e('button', {id:'signal', value:'+/-', onClick: 'need to improve', style: operatorStyle }, '+/-'),
                    e('button', {id:'percent', value:'%', onClick: 'need to improve', style: operatorStyle }, '%'),
                    e('button', {id:'decimal', value:'.', onClick: 'need to improve' }, '.'),
@@ -69,21 +69,28 @@ class App extends React.Component
         };
 
         this.handleNumber = this.handleNumber.bind(this);
-        
+        this.initialize = this.initialize.bind(this);
     }
 
     handleNumber(n)
     {
       this.setState({
         currentVal: n.target.value
-      })
+      });
+    }
+
+    initialize()
+    {
+      this.setState({
+        currentVal: '0'
+      });
     }
 
     render()
     {
         return [e(Header), 
                 e(Output, { currentValue: this.state.currentVal }),
-                e(Buttons, {  number: this.handleNumber  }),
+                e(Buttons, { initialize:this.initialize, number: this.handleNumber  }),
                 e(Footer)];
     }
 }
