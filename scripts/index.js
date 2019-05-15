@@ -55,7 +55,7 @@ class Output extends React.Component
 {
   render()
   {
-    return e('div', {id: 'display', className: 'outputScreen' }, '000');
+    return e('div', {id: 'display', className: 'outputScreen' }, this.props.currentValue);
   }
 }
 
@@ -65,7 +65,7 @@ class App extends React.Component
     {
         super(props);
         this.state = {
-            
+            currentVal: '0'
         };
         
     }
@@ -73,7 +73,7 @@ class App extends React.Component
     render()
     {
         return [e(Header), 
-                e(Output),
+                e(Output, { currentValue: this.state.currentVal }),
                 e(Buttons),
                 e(Footer)];
     }
