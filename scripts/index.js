@@ -27,16 +27,16 @@ class Buttons extends React.Component
     {
         return (e('div', null,
                   [e('button', {id: 'equals', value: '=', style: operatorBasicStyle }, '='),
-                   e('button', {id: 'zero', value: '0', onClick:'need improve'}, '0'),
-                   e('button', {id: 'one', value: '1', onClick:'need improve'}, '1'),
-                   e('button', {id: 'two', value: '2', onClick:'need improve'}, '2'),
-                   e('button', {id: 'three', value: '3', onClick:'need improve'}, '3'),
-                   e('button', {id: 'four', value: '4', onClick:'need improve'}, '4'),
-                   e('button', {id: 'five', value: '5', onClick:'need improve'}, '5'),
-                   e('button', {id: 'six', value: '6', onClick:'need improve'}, '6'),
-                   e('button', {id: 'seven', value: '7', onClick:'need improve'}, '7'),
-                   e('button', {id: 'eight', value: '8', onClick:'need improve'}, '8'),
-                   e('button', {id: 'nine', value: '9', onClick:'need improve'}, '9'),
+                   e('button', {id: 'zero', value: '0', onClick: this.props.number }, '0'),
+                   e('button', {id: 'one', value: '1', onClick: this.props.number }, '1'),
+                   e('button', {id: 'two', value: '2', onClick: this.props.number }, '2'),
+                   e('button', {id: 'three', value: '3', onClick: this.props.number }, '3'),
+                   e('button', {id: 'four', value: '4', onClick: this.props.number }, '4'),
+                   e('button', {id: 'five', value: '5', onClick: this.props.number }, '5'),
+                   e('button', {id: 'six', value: '6', onClick: this.props.number }, '6'),
+                   e('button', {id: 'seven', value: '7', onClick: this.props.number }, '7'),
+                   e('button', {id: 'eight', value: '8', onClick: this.props.number }, '8'),
+                   e('button', {id: 'nine', value: '9', onClick: this.props.number }, '9'),
                    e('button', {id:'add', value:'+', onClick: 'need to improve', style: operatorBasicStyle }, '+'),
                    e('button', {id:'subtract', value:'-', onClick: 'need to improve', style: operatorBasicStyle }, '-'),
                    e('button', {id:'multiply', value:'*', onClick: 'need to improve', style: operatorBasicStyle }, '*'),
@@ -67,14 +67,23 @@ class App extends React.Component
         this.state = {
             currentVal: '0'
         };
+
+        this.handleNumber = this.handleNumber.bind(this);
         
+    }
+
+    handleNumber(n)
+    {
+      this.setState({
+        currentVal: n.target.value
+      })
     }
 
     render()
     {
         return [e(Header), 
                 e(Output, { currentValue: this.state.currentVal }),
-                e(Buttons),
+                e(Buttons, {  number: this.handleNumber  }),
                 e(Footer)];
     }
 }
