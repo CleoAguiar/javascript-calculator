@@ -1,7 +1,7 @@
 body {
 	margin: 20px 20px 40px;
   	font-size: 1.1em;
-  	background-color: #000;
+  	background-color: #002;
   	color: #FFF;
 }
 
@@ -20,6 +20,17 @@ a:link {
 	color: #FFF;
 }
 
-a:hover{
+a:hover {
 	color: #F60;
+}
+
+.calculador {
+	border: 1px solid #FFD;
+	padding: 10px;
+	background: #000;
+	width: 320px;
+	margin: auto;
+	position: relative;
+	align-items: center;
+	justify-content: center;
 }

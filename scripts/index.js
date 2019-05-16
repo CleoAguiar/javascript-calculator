@@ -89,8 +89,10 @@ class App extends React.Component
     render()
     {
         return [e(Header), 
-                e(Output, { currentValue: this.state.currentVal }),
-                e(Buttons, { initialize:this.initialize, number: this.handleNumber  }),
+                e('div', { class: 'calculador'}, [
+                  e(Output, { currentValue: this.state.currentVal }),
+                  e(Buttons, { initialize:this.initialize, number: this.handleNumber  })
+                ]),
                 e(Footer)];
     }
 }
