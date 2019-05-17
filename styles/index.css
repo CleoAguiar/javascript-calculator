@@ -1,46 +1,54 @@
 body {
-	margin: 20px 20px 40px;
-  	font-size: 1.1em;
-  	background-color: #002;
-  	color: #FFF;
+    margin: 20px 20px 40px;
+    font-size: 1.1em;
+    background-color: #002;
+    color: #FFF;
 }
 
 .header h2, p {
-	text-align: center;
+    text-align: center;
 }
 
 .footer {
-	position: fixed;
-	right: 0;
-	bottom: 1em;
-	left: 0;
+    position: fixed;
+    right: 0;
+    bottom: 1em;
+    left: 0;
 }
 
 a:link {
-	color: #FFF;
+    color: #FFF;
 }
 
 a:hover {
-	color: #F60;
+    color: #F60;
 }
 
 .calculador {
-	border: 1px solid #FFD;
-	padding: 10px;
-	background: #000;
-	width: 4.8em;
-	margin: auto;
-	position: relative;
-	align-items: center;
-	justify-content: center;
-	font-size: 3em;
+    border: 1px solid #FFD;
+    padding: 10px;
+    background: #000;
+    width: 4.8em;
+    margin: auto;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    font-size: 3em;
 }
 
 button {
-	font-size: 0.5em;
-	height: 2em;
-	width: 2em;
-	border-radius: 50%;
-	border: none;
-	margin-right: 0.4em;
+    font-size: 0.5em;
+    height: 2em;
+    width: 2em;
+    border-radius: 50%;
+    border: none;
+    margin-right: 0.4em;
+    text-transform: uppercase;
+    cursor: pointer;
+    line-height: 50%;
+}
+
+#zero {
+    width: 4.4em;
+    border-radius: 1em;
 }
