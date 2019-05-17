@@ -18,7 +18,7 @@ const Footer = () => {
         );
 };
 
-const operatorBasicStyle = {background: '#F80'}, operatorStyle = {background: '#D5D5DD'} ;
+const operatorBasicStyle = {background: '#F80'} ;
 
 
 class Buttons extends React.Component
@@ -27,9 +27,9 @@ class Buttons extends React.Component
     {
         return (e('div', null,
                   [
-                   e('button', {id:'clear', value:'AC', onClick: this.props.initialize , style: operatorStyle }, 'AC'),
-                   e('button', {id:'signal', value:'+/-', onClick: 'need to improve', style: operatorStyle }, '+/-'),
-                   e('button', {id:'percent', value:'%', onClick: 'need to improve', style: operatorStyle }, '%'),
+                   e('button', {id:'clear', value:'AC', onClick: this.props.initialize }, 'AC'),
+                   e('button', {id:'signal', value:'+/-', onClick: 'need to improve' }, '+/-'),
+                   e('button', {id:'percent', value:'%', onClick: 'need to improve' }, '%'),
                    e('button', {id:'divide', value:'/', onClick: 'need to improve', style: operatorBasicStyle }, '/'),
                    e('button', {id: 'seven', value: '7', onClick: this.props.number }, '7'),
                    e('button', {id: 'eight', value: '8', onClick: this.props.number }, '8'),

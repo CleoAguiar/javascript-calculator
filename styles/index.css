@@ -46,9 +46,16 @@ button {
     text-transform: uppercase;
     cursor: pointer;
     line-height: 50%;
+    background: #404040;
+    color: #FFF;
 }
 
 #zero {
     width: 4.4em;
     border-radius: 1em;
+}
+
+#clear, #signal, #percent {
+    color: #000;
+    background: #D5D5DD;
 }
