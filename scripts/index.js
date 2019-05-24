@@ -69,13 +69,19 @@ class App extends React.Component
 
         this.handleNumber = this.handleNumber.bind(this);
         this.initialize = this.initialize.bind(this);
+        this.handleKeyPress = this.handleKeyPress.bind(this);
     }
 
     handleNumber(n)
     {
-      this.setState({
-        currentVal: n.target.value
-      });
+      typeof n === 'string' ?
+        this.setState({
+          currentVal: n
+        })
+      :
+        this.setState({
+          currentVal: n.target.value
+        })
     }
 
     initialize()
@@ -84,6 +90,22 @@ class App extends React.Component
         currentVal: '0'
       });
     }
+
+    componentDidMount()
+    {
+        document.addEventListener('keydown', this.handleKeyPress);
+    }
+
+    componentWillUnmount()
+    {
+        document.removeEventListener('keydown', this.handleKeyPress);
+    }
+
+    handleKeyPress(event)
+    {
+        this.handleNumber(event.key);
+    }
+
 
     render()
     {
