@@ -73,23 +73,25 @@ class App extends React.Component
         this.handleOperator = this.handleOperator.bind(this);
     }
 
-    handleNumber(n)
-    {
-      typeof n === 'string' ?
-        this.setState({
-          currentVal: n
-        })
-      :
-        this.setState({
-          currentVal: n.target.value
-        })
-    }
-
     initialize()
     {
       this.setState({
         currentVal: '0'
       });
+    }
+
+    handleNumber(n)
+    {
+      let display = this.state.currentVal;
+      console.log(display);
+      typeof n === 'string' ?
+        this.setState({
+          currentVal: this.state.currentVal.concat(n)
+        })
+      :
+        this.setState({
+          currentVal: this.state.currentVal.concat(n.target.value)
+        })
     }
 
     componentDidMount()
