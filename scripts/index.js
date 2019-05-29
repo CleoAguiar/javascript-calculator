@@ -64,7 +64,7 @@ class App extends React.Component
     {
         super(props);
         this.state = {
-            currentVal: '0',
+            currentVal: '',
         };
 
         this.handleNumber = this.handleNumber.bind(this);
@@ -125,7 +125,7 @@ class App extends React.Component
     {
         return [e(Header), 
                 e('div', { class: 'calculador'}, [
-                  e(Output, { currentValue: this.state.currentVal.lenght === 0 ?  0 : this.state.currentVal}),
+                  e(Output, { currentValue: this.state.currentVal.length === 0 ? '0' : this.state.currentVal }),
                   e(Buttons, { initialize:this.initialize, number: this.handleNumber, 
                                                            operators: this.handleOperator,
                                                            evaluate: this.handleEvaluate  })
