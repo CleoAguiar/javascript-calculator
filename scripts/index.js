@@ -77,7 +77,7 @@ class App extends React.Component
     initialize()
     {
       this.setState({
-        currentVal: '0'
+        currentVal: ''
       });
     }
 
