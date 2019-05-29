@@ -43,7 +43,7 @@ class Buttons extends React.Component
                    e('button', {id:'add', value:'+', onClick: this.props.operators }, '+'),
                    e('button', {id: 'zero', value: '0', onClick: this.props.number }, '0'),
                    e('button', {id:'decimal', value:'.', onClick: 'need to improve' }, '.'),
-                   e('button', {id: 'equals', value: '=', onClick: 'need to improve' }, '='),
+                   e('button', {id: 'equals', value: '=', onClick: this.props.evaluate }, '='),
 
                   ]));
     }
@@ -64,13 +64,14 @@ class App extends React.Component
     {
         super(props);
         this.state = {
-            currentVal: '',
+            currentVal: '0',
         };
 
         this.handleNumber = this.handleNumber.bind(this);
         this.initialize = this.initialize.bind(this);
         this.handleKeyPress = this.handleKeyPress.bind(this);
         this.handleOperator = this.handleOperator.bind(this);
+        this.handleEvaluate = this.handleEvaluate.bind(this);
     }
 
     initialize()
@@ -109,12 +110,14 @@ class App extends React.Component
 
     handleOperator(op)
     {
-      console.log(this.state);
-
       this.setState({
         currentVal: this.state.currentVal.concat(op.target.value)
       })
 
+    }
+
+    handleEvaluate(){
+      console.log(this.state);
     }
 
 
@@ -123,7 +126,9 @@ class App extends React.Component
         return [e(Header), 
                 e('div', { class: 'calculador'}, [
                   e(Output, { currentValue: this.state.currentVal }),
-                  e(Buttons, { initialize:this.initialize, number: this.handleNumber, operators: this.handleOperator  })
+                  e(Buttons, { initialize:this.initialize, number: this.handleNumber, 
+                                                           operators: this.handleOperator,
+                                                           evaluate: this.handleEvaluate  })
                 ]),
                 e(Footer)];
     }
