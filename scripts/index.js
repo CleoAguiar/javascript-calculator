@@ -109,18 +109,11 @@ class App extends React.Component
 
     handleOperator(op)
     {
-      // console.log(op.target.value);
-      // need to improve
       console.log(this.state);
-      
-      typeof op === 'string' ?
-        this.setState({
-          currentVal: this.state.currentVal.concat(op)
-        })
-      :
-        this.setState({
-          currentVal: this.state.currentVal.concat(op.target.value)
-        })
+
+      this.setState({
+        currentVal: this.state.currentVal.concat(op.target.value)
+      })
 
     }
 
