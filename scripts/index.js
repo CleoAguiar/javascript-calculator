@@ -84,13 +84,24 @@ class App extends React.Component
     handleNumber(n)
     {
       typeof n === 'string' ?
-        this.setState({
-          currentVal: this.state.currentVal.concat(n)
-        })
+      // event.key
+        (n === '0' && this.state.currentVal.length === 0) ?
+          this.setState({
+            currentVal: ''
+          })
+        :
+          this.setState({
+            currentVal: this.state.currentVal.concat(n)
+          })
       :
-        this.setState({
-          currentVal: this.state.currentVal.concat(n.target.value)
-        })
+        (n.target.value === '0' && this.state.currentVal.length === 0) ?
+          this.setState({
+            currentVal: ''
+          })
+        :
+          this.setState({
+            currentVal: this.state.currentVal.concat(n.target.value)
+          })
     }
 
     componentDidMount()
