@@ -2,6 +2,9 @@
 
 const e = React.createElement;
 
+const isOperator = /[x/+‑]/,
+      endsWithOperator = /[x/+‑]$/
+
 const Header = () => {
     return e('div', { class: 'header' },
             [e('h2',null, 'Welcome to my React Javascript Calculator!'),
@@ -64,7 +67,10 @@ class App extends React.Component
     {
         super(props);
         this.state = {
-            currentVal: '',
+            currentVal: '0',
+            prevVal: '0',
+            formula: ''
+
         };
 
         this.handleNumber = this.handleNumber.bind(this);
@@ -72,36 +78,53 @@ class App extends React.Component
         this.handleKeyPress = this.handleKeyPress.bind(this);
         this.handleOperator = this.handleOperator.bind(this);
         this.handleEvaluate = this.handleEvaluate.bind(this);
+        this.maxDigit = this.maxDigit.bind(this);
     }
 
     initialize()
     {
       this.setState({
-        currentVal: ''
+        currentVal: '0',
+        prevVal: '0',
+        formula: ''
+      });
+    }
+
+    maxDigit()
+    {
+      this.setState({
+        currentVal: 'Limit'
       });
     }
 
     handleNumber(n)
     {
-      typeof n === 'string' ?
-      // event.key
-        (n === '0' && this.state.currentVal.length === 0) ?
+      if (!this.state.currentVal.includes('Limit'))
+      {
+        this.setState({ evaluate: false })
+        if (this.state.currentVal.length > 7)
+        {
+          this.maxDigit();
+        }
+        else if (this.state.evaluate === true)
+        {
           this.setState({
-            currentVal: ''
-          })
-        :
+            currentVal: n.target.value,
+            formula: n.target.value != '0'?
+              n.target.value: '0'
+          });
+        }
+        else
+        {
           this.setState({
-            currentVal: this.state.currentVal.concat(n)
-          })
-      :
-        (n.target.value === '0' && this.state.currentVal.length === 0) ?
-          this.setState({
-            currentVal: ''
-          })
-        :
-          this.setState({
-            currentVal: this.state.currentVal.concat(n.target.value)
-          })
+            currentVal: this.state.currentVal == '0' || isOperator.test(this.state.currentVal) ?  
+                          n.target.value : this.state.currentVal + n.target.value,
+            formula: this.state.currentVal == '0' && n.target.value == '0' ?
+                        this.state.formula: /([^.0-9]0)$/.test(this.state.formula) ?
+                          this.state.formula.slice(0, -1) + n.target.value: this.state.formula + n.target.value
+          });
+        }
+      }
     }
 
     componentDidMount()
@@ -129,6 +152,20 @@ class App extends React.Component
 
     handleEvaluate(){
       console.log(this.state);
+      if (!this.state.currentVal.includes('Limit'))
+      {
+        let expression = this.state.formula;
+        if (endsWithOperator.test.expression)
+          expression = expression.slice(0, -1);
+        expression = expression.replace(/x/g, '*').replace(/-/g, '-')
+        let answer = Math.round(1000000000000 * eval(expression)) / 1000000000000;
+        this.setState({
+          currentVal: answer.toString(),
+          formula: expression.replace(/\*/g, '.').replace(/\-/g, '-') + '=' + answer,
+          prevVal: answer,
+          evaluate: true
+        });
+      }
     }
 
 
@@ -136,10 +173,9 @@ class App extends React.Component
     {
         return [e(Header), 
                 e('div', { class: 'calculador'}, [
-                  e(Output, { currentValue: this.state.currentVal.length === 0 ? '0' : this.state.currentVal }),
+                  e(Output, { currentValue: this.state.currentVal }),
                   e(Buttons, { initialize:this.initialize, number: this.handleNumber, 
-                                                           operators: this.handleOperator,
-                                                           evaluate: this.handleEvaluate  })
+                               operators: this.handleOperator, evaluate: this.handleEvaluate })
                 ]),
                 e(Footer)];
     }
