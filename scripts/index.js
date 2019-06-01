@@ -110,8 +110,7 @@ class App extends React.Component
         {
           this.setState({
             currentVal: n.target.value,
-            formula: n.target.value != '0'?
-              n.target.value: '0'
+            formula: n.target.value != '0'? n.target.value : '0'
           });
         }
         else
@@ -121,7 +120,7 @@ class App extends React.Component
                           n.target.value : this.state.currentVal + n.target.value,
             formula: this.state.currentVal == '0' && n.target.value == '0' ?
                         this.state.formula: /([^.0-9]0)$/.test(this.state.formula) ?
-                          this.state.formula.slice(0, -1) + n.target.value: this.state.formula + n.target.value
+                          this.state.formula.slice(0, -1) + n.target.value : this.state.formula + n.target.value
           });
         }
       }
@@ -175,7 +174,7 @@ class App extends React.Component
         if (endsWithOperator.test.expression)
           expression = expression.slice(0, -1);
         expression = expression.replace(/x/g, '*').replace(/-/g, '-')
-        let answer = Math.round(1000000000000 * eval(expression)) / 1000000000000;
+        let answer = Math.round(10000000 * eval(expression)) / 10000000;
         this.setState({
           currentVal: answer.toString(),
           formula: expression.replace(/\*/g, '.').replace(/\-/g, '-') + '=' + answer,
@@ -183,6 +182,7 @@ class App extends React.Component
           evaluate: true
         });
       }
+      console.log(this.state)
     }
 
 
