@@ -39,7 +39,7 @@ class Buttons extends React.Component
                    e('button', {id: 'four', value: '4', onClick: this.props.number }, '4'),
                    e('button', {id: 'five', value: '5', onClick: this.props.number }, '5'),
                    e('button', {id: 'six', value: '6', onClick: this.props.number }, '6'),
-                   e('button', {id:'subtract', value:'-', onClick: this.props.operators }, '-'),
+                   e('button', {id:'subtract', value:'‑', onClick: this.props.operators }, '-'),
                    e('button', {id: 'one', value: '1', onClick: this.props.number }, '1'),
                    e('button', {id: 'two', value: '2', onClick: this.props.number }, '2'),
                    e('button', {id: 'three', value: '3', onClick: this.props.number }, '3'),
@@ -85,7 +85,7 @@ class App extends React.Component
 
         this.handleNumber = this.handleNumber.bind(this);
         this.initialize = this.initialize.bind(this);
-        this.handleKeyPress = this.handleKeyPress.bind(this);
+        // this.handleKeyPress = this.handleKeyPress.bind(this);
         this.handleOperator = this.handleOperator.bind(this);
         this.handleEvaluate = this.handleEvaluate.bind(this);
         this.handleDecimal = this.handleDecimal.bind(this);
@@ -137,20 +137,20 @@ class App extends React.Component
       }
     }
 
-    componentDidMount()
-    {
-        document.addEventListener('keydown', this.handleKeyPress);
-    }
+    // componentDidMount()
+    // {
+    //     document.addEventListener('keydown', this.handleKeyPress);
+    // }
 
-    componentWillUnmount()
-    {
-        document.removeEventListener('keydown', this.handleKeyPress);
-    }
+    // componentWillUnmount()
+    // {
+    //     document.removeEventListener('keydown', this.handleKeyPress);
+    // }
 
-    handleKeyPress(event)
-    {
-        this.handleNumber(event.key);
-    }
+    // handleKeyPress(event)
+    // {
+    //     this.handleNumber(event.key);
+    // }
 
     handleOperator(op)
     {
@@ -174,6 +174,7 @@ class App extends React.Component
             formula: !isOperator.test(this.state.currentVal) ?
               this.state.formula += op.target.value : this.state.prevVal += op.target.value
           });
+          console.log(this.state)
         }
       }
     }
@@ -183,13 +184,13 @@ class App extends React.Component
       if (!this.state.currentVal.includes('Limit'))
       {
         let expression = this.state.formula;
-        if (endsWithOperator.test.expression)
+        if (endsWithOperator.test(expression))
           expression = expression.slice(0, -1);
         expression = expression.replace(/x/g, '*').replace(/‑/g, '-');
         let answer = Math.round(10000000 * eval(expression)) / 10000000;
         this.setState({
           currentVal: answer.toString(),
-          formula: expression.replace(/\*/g, '.').replace(/-/g, '‑') + '=' + answer,
+          formula: expression.replace(/\*/g, '.').replace(/‑/g, '‑') + '=' + answer,
           prevVal: answer,
           evaluate: true
         });
