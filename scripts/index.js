@@ -3,7 +3,7 @@
 const e = React.createElement;
 
 const isOperator = /[x/+‑]/,
-      endsWithOperator = /[x/+‑]$/
+      endsWithOperator = /[x+‑/]$/
 
 const Header = () => {
     return e('div', { class: 'header' },
@@ -35,7 +35,7 @@ class Buttons extends React.Component
                    e('button', {id: 'seven', value: '7', onClick: this.props.number }, '7'),
                    e('button', {id: 'eight', value: '8', onClick: this.props.number }, '8'),
                    e('button', {id: 'nine', value: '9', onClick: this.props.number }, '9'),
-                   e('button', {id:'multiply', value:'*', onClick: this.props.operators }, 'x'),
+                   e('button', {id:'multiply', value:'x', onClick: this.props.operators }, 'x'),
                    e('button', {id: 'four', value: '4', onClick: this.props.number }, '4'),
                    e('button', {id: 'five', value: '5', onClick: this.props.number }, '5'),
                    e('button', {id: 'six', value: '6', onClick: this.props.number }, '6'),
@@ -185,10 +185,11 @@ class App extends React.Component
         let expression = this.state.formula;
         if (endsWithOperator.test.expression)
           expression = expression.slice(0, -1);
+        expression = expression.replace(/x/g, '*').replace(/‑/g, '-');
         let answer = Math.round(10000000 * eval(expression)) / 10000000;
         this.setState({
           currentVal: answer.toString(),
-          formula: expression + '=' + answer,
+          formula: expression.replace(/\*/g, '.').replace(/-/g, '‑') + '=' + answer,
           prevVal: answer,
           evaluate: true
         });
