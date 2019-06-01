@@ -137,21 +137,6 @@ class App extends React.Component
       }
     }
 
-    // componentDidMount()
-    // {
-    //     document.addEventListener('keydown', this.handleKeyPress);
-    // }
-
-    // componentWillUnmount()
-    // {
-    //     document.removeEventListener('keydown', this.handleKeyPress);
-    // }
-
-    // handleKeyPress(event)
-    // {
-    //     this.handleNumber(event.key);
-    // }
-
     handleOperator(op)
     {
       if (!this.state.currentVal.includes('Limit'))
@@ -174,7 +159,6 @@ class App extends React.Component
             formula: !isOperator.test(this.state.currentVal) ?
               this.state.formula += op.target.value : this.state.prevVal += op.target.value
           });
-          console.log(this.state)
         }
       }
     }
