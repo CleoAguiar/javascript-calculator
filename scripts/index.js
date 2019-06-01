@@ -144,14 +144,31 @@ class App extends React.Component
 
     handleOperator(op)
     {
-      this.setState({
-        currentVal: this.state.currentVal.concat(op.target.value)
-      })
-
+      if (!this.state.currentVal.includes('Limit'))
+      {
+        this.setState({
+          currentVal: op.target.value,
+          evaluate: false
+        });
+        if (this.state.formula.includes('='))
+        {
+          this.setState({
+            formula: this.state.prevVal + op.target.value
+          });
+        }
+        else
+        {
+          this.setState({
+            prevVal: !isOperator.test(this.state.currentVal) ?
+              this.state.formula : this.state.prevVal,
+            formula: !isOperator.test(this.state.currentVal) ?
+              this.state.formula += op.target.value : this.state.prevVal += op.target.value
+          });
+        }
+      }
     }
 
     handleEvaluate(){
-      console.log(this.state);
       if (!this.state.currentVal.includes('Limit'))
       {
         let expression = this.state.formula;
