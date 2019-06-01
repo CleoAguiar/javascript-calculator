@@ -61,6 +61,16 @@ class Output extends React.Component
   }
 }
 
+
+class Formula extends React.Component
+{
+  render()
+  {
+    return e('div', {id: 'display', className: 'formulaScreen' }, this.props.formula);
+  }
+}
+
+
 class App extends React.Component
 {
     constructor (props)
@@ -188,6 +198,7 @@ class App extends React.Component
     {
         return [e(Header), 
                 e('div', { class: 'calculador'}, [
+                  e(Formula, { formula: this.state.formula }),
                   e(Output, { currentValue: this.state.currentVal }),
                   e(Buttons, { initialize:this.initialize, number: this.handleNumber, 
                                operators: this.handleOperator, evaluate: this.handleEvaluate })

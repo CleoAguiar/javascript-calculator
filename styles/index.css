@@ -70,3 +70,7 @@ button {
 .outputScreen {
     /*direction: rtl;*/
 }
+
+.formulaScreen {
+    font-size: 0.5em;
+}
