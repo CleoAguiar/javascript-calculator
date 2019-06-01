@@ -45,7 +45,7 @@ class Buttons extends React.Component
                    e('button', {id: 'three', value: '3', onClick: this.props.number }, '3'),
                    e('button', {id:'add', value:'+', onClick: this.props.operators }, '+'),
                    e('button', {id: 'zero', value: '0', onClick: this.props.number }, '0'),
-                   e('button', {id:'decimal', value:'.', onClick: 'need to improve' }, '.'),
+                   e('button', {id:'decimal', value:'.', onClick: this.props.decimal }, '.'),
                    e('button', {id: 'equals', value: '=', onClick: this.props.evaluate }, '='),
 
                   ]));
@@ -88,6 +88,7 @@ class App extends React.Component
         this.handleKeyPress = this.handleKeyPress.bind(this);
         this.handleOperator = this.handleOperator.bind(this);
         this.handleEvaluate = this.handleEvaluate.bind(this);
+        this.handleDecimal = this.handleDecimal.bind(this);
         this.maxDigit = this.maxDigit.bind(this);
     }
 
@@ -177,7 +178,8 @@ class App extends React.Component
       }
     }
 
-    handleEvaluate(){
+    handleEvaluate()
+    {
       if (!this.state.currentVal.includes('Limit'))
       {
         let expression = this.state.formula;
@@ -193,6 +195,42 @@ class App extends React.Component
       }
     }
 
+    handleDecimal()
+    {
+      if (this.state.evaluate === true)
+      {
+        this.setState({
+          currentVal: '0.',
+          formula: '0.',
+          evaluate: false
+        });
+      }
+      else if (!this.state.currentVal.includes('.') && !this.state.currentVal.includes('Limit'))
+      {
+        this.setState({
+          evaluate: false
+        });
+        if (this.state.currentVal > 7)
+        {
+          this.maxDigit();
+        }
+        else if (endsWithOperator.test(this.state.formula) || this.state.currentVal == '0' && this.state.formula === '')
+        {
+          this.setState({
+            currentVal: '0.',
+            formula: this.state.formula + '0.'
+          });
+        }
+        else
+        {
+          this.setState({
+            currentVal: this.state.formula.match(/(-?\d+\.?\d*)$/)[0] + '.',
+            formula: this.state.formula + '.'
+          });
+        }
+      }
+    }
+
 
     render()
     {
@@ -201,7 +239,7 @@ class App extends React.Component
                   e(Formula, { formula: this.state.formula }),
                   e(Output, { currentValue: this.state.currentVal }),
                   e(Buttons, { initialize:this.initialize, number: this.handleNumber, 
-                               operators: this.handleOperator, evaluate: this.handleEvaluate })
+                               operators: this.handleOperator, evaluate: this.handleEvaluate, decimal: this.handleDecimal })
                 ]),
                 e(Footer)];
     }
